@@ -36,39 +36,61 @@
 # Check if string length is even or odd
   # If even
     # Check to see if first and last characters in string are the same, and
-    # remove them if they are, and then do the same thing until length is zero
-    # if they are not the same, return false
+      # if they are, remove them from the s, and then do the same thing until length is zero
+      # if they are not the same, return false
+    # if length is zero return true
 # If odd
   # Check to see if first and last characters in string are the same, and
   # remove them if they are, and then do the same thing until length is one
   # if they are not the same, return false
+# if length is one return true
 
-
-  # Check to see if first and last characters in string are the same
-    # If true, remove first and last characters and repeat
 
 
 
 #Solution
-While string.length > 2
-if string.length.even?
-$flattened_array = []
-def flatten_array(array)
-  array.each do |element|         # O(n)
-    if element.class == Array     # O(1)
-      flatten_array(element)      # O(n) - Recursive, so exclude from big O for time, include for space
-    else
-      $flattened_array << element #O(1)
+
+def is_palindrome(x)
+  return "Invalid Input" if x.class != Integer
+  string = x.to_s
+  if string.length.even?
+    until string.length == 0 do
+      if string[0] == string[-1]
+        string = string[1..-2]
+      else
+        return false
+      end
     end
+    return true
+  else
+    until string.length == 1 do
+      if string[0] == string[-1]
+        string = string[1..-2]
+      else
+        return false
+      end
+    end
+    return true
   end
-  $flattened_array
 end
 
+print is_palindrome(12345678987654321)
 
 
-print flatten_array([1, 2, 3, [[4], 5], [[[6]]]])
-puts "\n\n"
-$flattened_array = []
-print flatten_array(["hi", "this is", [[["string"], "that is very"], [[[["nested"]]]]]])
+
+# While string.length > 2
+# if string.length.even?
+# $flattened_array = []
+# def flatten_array(array)
+#   array.each do |element|         # O(n)
+#     if element.class == Array     # O(1)
+#       flatten_array(element)      # O(n) - Recursive, so exclude from big O for time, include for space
+#     else
+#       $flattened_array << element #O(1)
+#     end
+#   end
+#   $flattened_array
+# end
+
 
     
