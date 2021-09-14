@@ -29,11 +29,11 @@
 
 # Aproximate integer solution
 def sqrt(x)
-  divisor = 1
+  divisor = 0.00
   quotient = x
   until divisor >= quotient
+    divisor += 1.00          # 2 3 4
     quotient = x / divisor # 8 4 8/3=>2
-    divisor += 1           # 2 3 4
   end
   divisor -= 1 if divisor > quotient
   return divisor
