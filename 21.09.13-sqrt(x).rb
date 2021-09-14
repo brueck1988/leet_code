@@ -28,65 +28,40 @@
 #Solution
 
 # Aproximate integer solution
-def sqrt(x)
+# def sqrt(x)
+  # divisor = 0.00
+  # quotient = x
+  # until divisor >= quotient
+  #   divisor += 1.00          # 2 3 4
+  #   quotient = x / divisor # 8 4 8/3=>2
+  # end
+  # divisor -= 1 if divisor > quotient
+  # return divisor
+# end
+# 
+# print sqrt(8)
+# require 'active_support'
+# require 'bigdecimal'
+# Precise solution to defined number of decimal places
+def sqrt(x, precision)
   divisor = 0.00
+  increment = 1.00
   quotient = x
-  until divisor >= quotient
-    divisor += 1.00          # 2 3 4
-    quotient = x / divisor # 8 4 8/3=>2
+  precision.times do
+    until divisor >= quotient
+      divisor += increment
+      quotient = x / divisor
+    end
+    return divisor if divisor == quotient
+    divisor -= increment
+    quotient = divisor + increment
+    increment = increment / 10.00
   end
-  divisor -= 1 if divisor > quotient
   return divisor
 end
 
-print sqrt(8)
-# require 'active_support'
-# require 'bigdecimal'
-# # Precise solution to defined number of decimal places
-# def sqrt(x)
-#   divisor = BigDecimal("1.000")
-#   increment = BigDecimal("1.000")
-#   quotient = x
-#   4.times do
-#     until divisor >= quotient
-#       quotient = x / divisor
-#       return divisor if divisor == quotient
-#       divisor += increment
-#     end
-#     if divisor >= quotient
-#       divisor -= increment 
-#     end
-#     increment = increment / 10
-#   end
-#   return divisor
-# end
-# 
-# print sqrt(89765)
-# # def sqrt(x)
-# #   increment = 1.0
-# #   divisor = 1.0
-# #   quotient = x / divisor
-# #   until divisor >= quotient
-# #     quotient = x / divisor
-# #     return divisor if divisor == quotient
-# #     divisor += increment
-# #   end
-# #   divisor -= increment if divisor > quotient
-# #   increment = increment / 10
-# #   divisor = divisor + increment
-# # 
-# # 
-# #   until divisor >= quotient
-# #     require "pry";binding.pry
-# #     quotient = x / divisor
-# #     return divisor if divisor == quotient
-# #     divisor += increment
-# #   end
-# #   divisor -= increment if divisor > quotient
-# #   return divisor
-# # end
-# # 
-# # print sqrt(19.36)
+print sqrt(89765, 10)
+
 
 
 
