@@ -30,14 +30,15 @@
 # 
 # # Pseudocode
 # first input.count.times do
-#   slice last element off of array until array is empty
+#   pop last element off of array until array is empty
 #     Take element and shovel it into string1
 # end
 # 
 # second input.count.times do
-#   slice last element off of array until array is empty
+#   pop last element off of array until array is empty
 #     Take element and put it into string2
 # end
+# 
 # 
 # total = string1 + string2
 # 
@@ -51,8 +52,21 @@
 # # Solution
 
 def add_two_numbers(l1, l2)
-  l1.count.times do 
-    
+  string1 = ""
+  string2 = ""
+  array1 = []
+  l1.count.times do
+    string1 += l1.pop.to_s
+  end
+  l2.count.times do
+    string2 += l2.pop.to_s
+  end
+  total = string1.to_i + string2.to_i
+  string_total = total.to_s
+  string_total.length.times do
+    array1 << string_total.slice!(-1).to_i
+  end
+  array1
 end
 
 l1 = [2,4,3]
