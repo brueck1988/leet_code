@@ -100,8 +100,40 @@
 # @param {String} s
 # @return {Boolean}
 def is_valid(s)
-
-
+  opening_brackets = ["(", "[", "{"]
+  closing_brackets = [")", "]", "}"]
+  brackets_hash = {")"=>"(", "]"=>"[", "}"=>"{"}
+  s.each_char do |first_char|
+    closing_brackets.each do |closing_bracket|
+      if first_char == closing_bracket
+        return false
+      end
+    end
+    opening_brackets.each_with_index do |opening_bracket, bracket_index|
+      if first_char == opening_bracket
+        s.each_char.with_index do |second_char, second_char_index|
+          next if second_char_index == 0
+          if second_char == opening_brackets[0] || second_char == opening_brackets[1] || second_char == opening_brackets[2]
+            if second_char == opening_brackets[0] && second_char != brackets_hash[s[second_char_index + 2]]
+              return false
+            elsif second_char == opening_brackets[1] && second_char != brackets_hash[s[second_char_index + 2]]
+              return false
+            else second_char == opening_brackets[2] && second_char != brackets_hash[s[second_char_index + 2]]
+              return false
+            end
+          elsif second_char == closing_brackets[bracket_index]
+            s.slice!(second_char_index)
+            s.slice!(0)
+            return true if s.empty?
+            return true if is_valid(s) == true
+          else
+            @no_match = "Matching bracket not found"
+          end
+        end
+      end
+    end
+  end
+  return false if @no_match == "Matching bracket not found"
 end
 
 
