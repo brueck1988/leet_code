@@ -1,5 +1,5 @@
 # # Technical Challenge Prompt
-27. Remove Element (Easy)
+# 27. Remove Element (Easy)
 # 
 # Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
 # 
@@ -51,14 +51,14 @@
 # 0 <= val <= 100
 
 # # Pseudocode
-Initialize k at 0
-Iterate through nums array with each
-  if element matches val
-    replace element with blank
-  else 
-    move element to first position in array
-    k += 1
-  end
+# Initialize k at 0
+# Iterate through nums array with each
+#   if element matches val
+#     replace element with blank
+#   else 
+#     move element to first position in array
+#     k += 1
+#   end
 
 # 
 # # Solution
@@ -66,16 +66,46 @@ Iterate through nums array with each
 # @param {Integer} val
 # @return {Integer}
 def remove_element(nums, val)
-  k = 0
-  nums.each_with_index do |num, index|
-    if num == val
-      nums[index] = ""
-    else
-      require "pry";binding.pry
-      move num to first position in array
-      k += 1
-    end
+  # Two line solution
+  nums.delete(val)
+  nums.size
+#   idx1 = 0
+# (0...nums.length).each do |idx2|
+#     if val != nums[idx2]
+#         nums[idx1] = nums[idx2]
+#         idx1 += 1
+#     end
+#     require "pry";binding.pry
+# end
+# 
+# return idx1
+#   return 0 if nums.length == 0
+# nums.each_with_index do |num, index|
+# if num == val
+#     nums[index] = nil
+# end
+# end
+# nums.compact!
+# nums.length
+
+
+  # k = 0
+  # count = 0
+  # array_count = nums.count
+  # while array_count >= count
+  #   if nums[0] == val
+  #     nums.delete_at(count)
+  #   else
+  #     require "pry";binding.pry
+  #     nums.push(nums.delete(nums[count]))
+  #     # nums.unshift(nums[count])
+  #     # nums.delete_at(count)
+  #     k += 1
+  #   end
+  #   count += 1    
+  # end
+  # print "#{k}, nums = #{nums}"
 end
-nums = [3,2,2,3]
+nums = [5,3,2,2,3,2,5,1]
 val = 3
 print remove_element(nums, val)
